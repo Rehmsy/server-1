@@ -1,22 +1,22 @@
-require('dotenv').config();
 const connect = require('../../lib/connect');
 const url = 'mongodb://localhost:27017/rehome-test';
 const mongoose = require('mongoose');
-const FirebaseAuth = require('firebaseauth');
-const firebaseAuth = new FirebaseAuth(process.env.FIREBASE_API_KEY);
-const { promisify } = require('util');
-const signInWithEmail = promisify(firebaseAuth.signInWithEmail.bind(firebaseAuth));
+const request = require('./request');
 
 before(() => connect(url));    
 after(() => mongoose.connection.close());
 
-let getTokenPromise = null;
-
 module.exports = {
-    getToken() {
-        if(getTokenPromise) return getTokenPromise;
-        
-        return getTokenPromise = signInWithEmail('banana@banana.com', 'abc123')
-            .then(result => result.token);
+    dropCollection(name) {
+        return mongoose.connection.dropCollection(name)
+            .catch(err => {
+                if(err.codeName !== 'NamespaceNotFound') throw err;
+            });
+    },
+    createToken(data = { name: 'Bobo', email: 'bobo@email.com', password: 'abc123'}) {
+        return request
+            .post('/api/auth/signup')
+            .send(data)
+            .then(res => res.body.token);
     }
 };
