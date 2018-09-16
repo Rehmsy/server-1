@@ -19,7 +19,27 @@ describe('Auth API', () => {
             .send(myUser)
             .then(({ body }) => token = body.token);
     });
+
     it('signs you up', () =>{
         assert.ok(token);
+    });
+
+    it('verifies', () => {
+        return request
+            .get('/api/auth/verify')
+            .set('Authorization', token)
+            .then(({ body }) => {
+                assert.isOk(body.valid);
+            });
+    });
+
+    it('signin', () => {
+        return request
+            .post('/api/auth/signin')
+            .send(myUser)
+            .then(({ body }) => {
+                console.log('boooooooody', body);
+                assert.ok(body.token);
+            });
     });
 });
