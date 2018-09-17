@@ -2,11 +2,12 @@ require('dotenv').config();
 const http = require('http');
 const app = require('./lib/app');
 const connect = require('./lib/connect');
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/rehome';
 
-connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/rehome');
+connect(MONGODB_URI);
 
 const server = http.createServer(app);
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
 server.listen(port, () => {
     // eslint-disable-next-line
