@@ -38,7 +38,6 @@ describe('Auth API', () => {
             .post('/api/auth/signin')
             .send(myUser)
             .then(({ body }) => {
-                console.log('boooooooody', body);
                 assert.ok(body.token);
             });
     });
