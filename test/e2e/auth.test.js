@@ -5,7 +5,8 @@ const { dropCollection } = require('./db');
 const myUser = {
     name: 'Bobo',
     email: 'bobo2@email.com',
-    password: '123abc'
+    password: '123abc',
+    zipCode: 97217
 };
 
 let token;
