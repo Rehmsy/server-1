@@ -5,12 +5,13 @@ const { dropCollection } = require('./db');
 const myUser = {
     name: 'Bobo',
     email: 'bobo@email.com',
-    password: '123abc'
+    password: '123abc',
+    zipCode: '97203'
 };
 
 let token;
 
-describe('Auth API', () => {
+describe.only('Auth API', () => {
     beforeEach(() => dropCollection('users'));
 
     beforeEach(() => {
@@ -38,7 +39,6 @@ describe('Auth API', () => {
             .post('/api/auth/signin')
             .send(myUser)
             .then(({ body }) => {
-                console.log('boooooooody', body);
                 assert.ok(body.token);
             });
     });

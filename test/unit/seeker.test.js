@@ -9,7 +9,7 @@ const getErrors = (validation, numberExpected) => {
     return errors;
 };
 
-describe.only('User model', () => {
+describe('Seeker model', () => {
     
     it('validates a good model', () => {
         const data = {
