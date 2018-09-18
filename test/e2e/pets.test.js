@@ -41,7 +41,6 @@ describe('Pets API', () => {
                     rehome: 'Allergy'
                 })
             .then(({ body }) => {
-                console.log('booooodyjsjsfbjhsbfa', body);
                 sally = body;
             });
     });
@@ -50,15 +49,15 @@ describe('Pets API', () => {
         assert.isOk(sally._id);
     });
 
-    // it('updates a pet', () => {
-    //     sally.name = 'Sally Envy Salad';
-    //     return request
-    //         .put(`api/pets/${sally._id}`)
-    //         .set('Authorization', token)
-    //         .send(sally)
-    //         .then(checkOk)
-    //         .then(({ body }) => { 
-    //             assert.deepEqual(body, sally);
-    //         });
-    // });
+    it('updates a pet', () => {
+        sally.name = 'Sally Envy Salad';
+        return request
+            .put(`/api/pets/${sally._id}`)
+            .set('Authorization', token)
+            .send(sally)
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.equal(body.name, sally.name);      
+            });
+    });
 });

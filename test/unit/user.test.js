@@ -3,7 +3,7 @@ const { getErrors } = require('../helpers.js');
 const User = require('../../lib/models/User.js');
 
 
-describe.only('user model', () => {
+describe('user model', () => {
     const credentials = {
         name: 'Test',
         email: 'test@test.com',
