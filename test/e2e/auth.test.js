@@ -20,9 +20,11 @@ describe.only('Auth API', () => {
             .send(myUser)
             .then(({ body }) => token = body.token);
     });
-
+    console.log('****** myUser', myUser);
+    
     it('signs you up', () =>{
         assert.ok(token);
+        console.log('****** token', token);
     });
 
     it('verifies', () => {

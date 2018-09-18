@@ -16,7 +16,7 @@ describe('Seeker model', () => {
             name: Types.ObjectId(),
             kids: false,
             activity: 'Low',
-            zip: Types.ObjectId(),
+            zipCode: Types.ObjectId(),
             otherPets: false,
             interested: [],
             favorites: []
