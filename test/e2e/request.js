@@ -1,13 +1,13 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
+const { assert } = chai;
 const http = require('http');
 
 const app = require('../../lib/app');
-
 const server = http.createServer(app);
-const request = chai.request(server);
-//.keepOpen() above after server?
+const request = chai.request(server).keepOpen();
+//.keepOpen() after server?
 
 request.checkOk = res => {
     if(res.status !== 200) throw new Error('expected 200 http status code');
