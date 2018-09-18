@@ -1,5 +1,4 @@
 const { Types } = require('mongoose');
-// const tokenService = require('../../lib/auth/token-service');
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection, createToken } = require('./db');
@@ -18,9 +17,8 @@ describe.only('Seekers API', () => {
         return request.post('/api/seekers')
             .set('Authorization', token)
             .send(data)
-            // .then(checkOk)
+            .then(request.checkOk)
             .then(({ body }) => {
-                console.log('*** body', body);
                 const { _id, __v } = body;
                 assert.ok(_id);
                 assert.equal(__v, 0);
@@ -34,15 +32,16 @@ describe.only('Seekers API', () => {
         activity: 'Low',
         zipCode: userId,
         otherPets: false,
-        interested: [{}],
-        favorites: [{}]
+        interested: [],
+        favorites: []
     };
 
     beforeEach (() => saveSeeker(seeker).then(s => seeker = s));
 
     it('gets a seeker by id', () => {
+        console.log('SEEKER', seeker);
         return request
-            .get(`/api/seekers/details/${userId}`)
+            .get(`/api/seekers/${seeker._id}`)
             .set('Authorization', token)
             .then(({ body }) => assert.deepEqual(body, seeker));
     });
