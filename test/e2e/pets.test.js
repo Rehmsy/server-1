@@ -41,7 +41,6 @@ describe('Pets API', () => {
                     rehome: 'Allergy'
                 })
             .then(({ body }) => {
-                console.log('booooodyjsjsfbjhsbfa', body);
                 sally = body;
             });
     });

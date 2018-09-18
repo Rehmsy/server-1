@@ -2,7 +2,7 @@ const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection, createToken } = require('./db');
 
-describe.only('Seekers API', () => {
+describe('Seekers API', () => {
 
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('seekers'));
@@ -43,4 +43,6 @@ describe.only('Seekers API', () => {
             .set('Authorization', token)
             .then(({ body }) => assert.deepEqual(body, [seeker]));
     });
+
+    
 });

@@ -11,7 +11,7 @@ const myUser = {
 
 let token;
 
-describe.skip('Auth API', () => {
+describe('Auth API', () => {
     beforeEach(() => dropCollection('users'));
 
     beforeEach(() => {
@@ -22,7 +22,6 @@ describe.skip('Auth API', () => {
     });
 
     it('signs you up', () => {
-        console.log('TOKEN', token);
         assert.ok(token);
     });
 
