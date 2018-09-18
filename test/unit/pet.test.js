@@ -4,7 +4,7 @@ const { Types } = require('mongoose');
 const Pet = require('../../lib/models/pet');
 
 describe('Pet model', () => {
-    it('validates a dope model', () => {
+    it('validates a dope pet model', () => {
         const data = {
             owner: Types.ObjectId(),
             zip:  Types.ObjectId(),
