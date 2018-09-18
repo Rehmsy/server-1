@@ -1,11 +1,10 @@
 const { assert } = require('chai');
 const request = require('./request');
-const { checkOk } = request;
+//const { checkOk } = request;
 const { dropCollection, createToken  } = require('./db');
 const { Types } = require('mongoose');
 
-
-describe.only('Pets API', () => {
+describe('Pets API', () => {
   
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('pets'));
@@ -15,7 +14,6 @@ describe.only('Pets API', () => {
 
     beforeEach(() => createToken().then(t => {
         token = t;
-        console.log('toooooken', token);
     }));
 
     beforeEach(() => {

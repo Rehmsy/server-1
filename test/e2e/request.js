@@ -7,6 +7,7 @@ const app = require('../../lib/app');
 
 const server = http.createServer(app);
 const request = chai.request(server);
+//.keepOpen() above after server?
 
 request.checkOk = res => {
     if(res.status !== 200) throw new Error('expected 200 http status code');
@@ -29,8 +30,6 @@ request.getToken = () => request
         password: 'abc'
     })
     .then(({ body }) => body.token);
-
-
 
 after(done => server.close(done));
 
