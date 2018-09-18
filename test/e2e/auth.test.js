@@ -22,7 +22,6 @@ describe('Auth API', () => {
     });
 
     it('signs you up', () => {
-        console.log('TOKEN', token);
         assert.ok(token);
     });
 
