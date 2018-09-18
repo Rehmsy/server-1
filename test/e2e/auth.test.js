@@ -1,6 +1,6 @@
 const { assert } = require('chai');
 const request = require('./request');
-const { dropCollection } = require('./db');
+const { dropCollection, checkOk } = require('./db');
 
 const myUser = {
     name: 'Bobo',
@@ -11,14 +11,18 @@ const myUser = {
 
 let token;
 
-describe.only('Auth API', () => {
+describe('Auth API', () => {
     beforeEach(() => dropCollection('users'));
 
     beforeEach(() => {
         return request
             .post('/api/auth/signup')
             .send(myUser)
-            .then(({ body }) => token = body.token);
+            .then(checkOk)
+            .then(({ body }) => {
+                console.log('*** body', body);
+                token = body.token;
+            });
     });
     console.log('****** myUser', myUser);
     

@@ -3,7 +3,7 @@ const { request, checkOk } = require('./request');
 const { dropCollection, createToken } = require('./db');
 // const tokenService = require('../../lib/auth/token-service');
 
-describe('Seekers API', () => {
+describe.only('Seekers API', () => {
 
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('seekers'));

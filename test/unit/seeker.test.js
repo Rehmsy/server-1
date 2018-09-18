@@ -33,6 +33,6 @@ describe('Seeker model', () => {
         const errors = getErrors(seeker.validateSync(), 3);
         assert.equal(errors.name.kind, 'required');
         assert.equal(errors.activity.kind, 'required');
-        assert.equal(errors.zip.kind, 'required');
+        assert.equal(errors.zipCode.kind, 'required');
     });
 });
