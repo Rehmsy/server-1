@@ -60,4 +60,20 @@ describe('Pets API', () => {
                 assert.equal(body.name, sally.name);      
             });
     });
+
+    it('removes a pet', () => {
+        return request
+            .delete(`/api/pets/${sally._id}`)
+            .set('Authorization', token)
+            .then(checkOk)
+            .then(res => {
+                assert.deepEqual(res.body, { removed: true });
+                return request
+                    .get('/api/pets')
+                    .set('Authorization', token);
+
+            });
+        
+
+    });
 });
