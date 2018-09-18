@@ -1,4 +1,3 @@
-// const { Types } = require('mongoose');
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection, createToken } = require('./db');
@@ -9,11 +8,18 @@ describe.only('Seekers API', () => {
     beforeEach(() => dropCollection('seekers'));
     
     let token;
-    let userId;
-    
+    let seeker;
+
     beforeEach(() => createToken().then(t => {
         token = t.token;
-        userId = t.id;
+        seeker = { 
+            user: t.id,
+            kids: false,
+            activity: 'Low',
+            otherPets: false,
+            interested: [],
+            favorites: []
+        };
     }));
 
     function saveSeeker(data) {
@@ -29,23 +35,12 @@ describe.only('Seekers API', () => {
             });
     }
 
-    let seeker = { 
-        name: userId,
-        kids: false,
-        activity: 'Low',
-        zipCode: userId,
-        otherPets: false,
-        interested: [],
-        favorites: []
-    };
-
     beforeEach (() => saveSeeker(seeker).then(s => seeker = s));
 
     it('gets a seeker by id', () => {
-        console.log('SEEKER', seeker);
         return request
-            .get(`/api/seekers/${userId}`)
+            .get(`/api/seekers/${seeker.user}`)
             .set('Authorization', token)
-            .then(({ body }) => assert.deepEqual(body, seeker));
+            .then(({ body }) => assert.deepEqual(body, [seeker]));
     });
 });
