@@ -13,10 +13,15 @@ module.exports = {
                 if(err.codeName !== 'NamespaceNotFound') throw err;
             });
     },
-    createToken(data = { name: 'Bubba', email: 'bubba2@email.com', password: 'abc123', zipCode: 97217 }) {
+    createToken(data = { 
+        name: 'Bubba', 
+        email: 'bubba2@email.com', 
+        password: 'abc123', 
+        zipCode: 97217
+    }) {
         return request
             .post('/api/auth/signup')
             .send(data)
-            .then(res => res.body.token);
+            .then(res => res.body);
     }
 };
