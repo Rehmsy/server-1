@@ -1,6 +1,6 @@
 const { assert } = require('chai');
 const request = require('./request');
-//const { checkOk } = request;
+const { checkOk } = request;
 const { dropCollection, createToken  } = require('./db');
 const { Types } = require('mongoose');
 
@@ -49,4 +49,16 @@ describe('Pets API', () => {
     it('saves a pet', () => {
         assert.isOk(sally._id);
     });
+
+    // it('updates a pet', () => {
+    //     sally.name = 'Sally Envy Salad';
+    //     return request
+    //         .put(`api/pets/${sally._id}`)
+    //         .set('Authorization', token)
+    //         .send(sally)
+    //         .then(checkOk)
+    //         .then(({ body }) => { 
+    //             assert.deepEqual(body, sally);
+    //         });
+    // });
 });

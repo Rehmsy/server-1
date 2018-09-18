@@ -11,7 +11,7 @@ const myUser = {
 
 let token;
 
-describe.skip('Auth API', () => {
+describe('Auth API', () => {
     beforeEach(() => dropCollection('users'));
 
     beforeEach(() => {
