@@ -2,7 +2,7 @@ require('dotenv').config();
 const http = require('http');
 const app = require('./lib/app');
 const connect = require('./lib/connect');
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/rehome';
+const MONGODB_URI = 'mongodb://localhost:27017/rehome' || process.env.MONGODB_URI;
 
 connect(MONGODB_URI);
 

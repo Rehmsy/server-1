@@ -4,7 +4,7 @@ const { dropCollection } = require('./db');
 
 const myUser = {
     name: 'Bobo',
-    email: 'bobo@email.com',
+    email: 'bobo2@email.com',
     password: '123abc'
 };
 
@@ -20,7 +20,8 @@ describe('Auth API', () => {
             .then(({ body }) => token = body.token);
     });
 
-    it('signs you up', () =>{
+    it('signs you up', () => {
+        console.log('TOKEN', token);
         assert.ok(token);
     });
 
@@ -38,7 +39,6 @@ describe('Auth API', () => {
             .post('/api/auth/signin')
             .send(myUser)
             .then(({ body }) => {
-                console.log('boooooooody', body);
                 assert.ok(body.token);
             });
     });
