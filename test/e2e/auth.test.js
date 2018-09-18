@@ -4,14 +4,20 @@ const { dropCollection, checkOk } = require('./db');
 
 const myUser = {
     name: 'Bobo',
+<<<<<<< HEAD
     email: 'bobo@email.com',
     password: '123abc',
     zipCode: '97203'
+=======
+    email: 'bobo2@email.com',
+    password: '123abc',
+    zipCode: 97217
+>>>>>>> master
 };
 
 let token;
 
-describe('Auth API', () => {
+describe.skip('Auth API', () => {
     beforeEach(() => dropCollection('users'));
 
     beforeEach(() => {
@@ -24,9 +30,15 @@ describe('Auth API', () => {
                 token = body.token;
             });
     });
+<<<<<<< HEAD
     console.log('****** myUser', myUser);
     
     it('signs you up', () =>{
+=======
+
+    it('signs you up', () => {
+        console.log('TOKEN', token);
+>>>>>>> master
         assert.ok(token);
         console.log('****** token', token);
     });
