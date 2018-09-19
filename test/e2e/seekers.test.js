@@ -19,7 +19,7 @@ describe('Seekers API', () => {
         tyroneData = { 
             kids: false,
             activity: 'Low',
-            otherPets: false,
+            otherPets: 'No',
             interested: [],
             favorites: []
         };
@@ -93,5 +93,4 @@ describe('Seekers API', () => {
                 assert.deepEqual(body, {});
             });
     });
-
 });
