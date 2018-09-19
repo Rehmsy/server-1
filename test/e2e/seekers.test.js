@@ -9,12 +9,12 @@ describe('Seekers API', () => {
     beforeEach(() => dropCollection('seekers'));
     
     let token;
+    let seekerData;
     let seeker;
 
     beforeEach(() => createToken().then(t => {
         token = t.token;
-        seeker = { 
-            user: t.id,
+        seekerData = { 
             kids: false,
             activity: 'Low',
             otherPets: false,
@@ -36,11 +36,11 @@ describe('Seekers API', () => {
             });
     }
 
-    beforeEach (() => saveSeeker(seeker).then(s => seeker = s));
+    beforeEach(() => saveSeeker(seekerData).then(s => seeker = s));
 
     it('gets a seeker by id', () => {
         return request
-            .get(`/api/seekers/${seeker.user}`)
+            .get(`/api/seekers/${seeker._id}`)
             .set('Authorization', token)
             .then(({ body }) => assert.deepEqual(body, [seeker]));
     });
