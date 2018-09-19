@@ -50,10 +50,11 @@ describe.only('Seekers API', () => {
     it('pushes petIds into interested field', () => {
         const pet = { _id: Types.ObjectId() };
         return request
-            .put(`/api/seekers/${tyrone._id}/interested`)
+            .put('/api/seekers/interested')
             .set('Authorization', token)
             .send(pet)
             .then(({ body }) => {
+                console.log('*** body', body);
                 assert.equal(body.interested.length, 1);
             });
     });
@@ -61,7 +62,7 @@ describe.only('Seekers API', () => {
     it('pushes petIds into favorites field', () => {
         const pet = { _id: Types.ObjectId() };
         return request
-            .put(`/api/seekers/${tyrone._id}/favorites`)
+            .put('/api/seekers/favorites')
             .set('Authorization', token)
             .send(pet)
             .then(({ body }) => {
@@ -78,7 +79,6 @@ describe.only('Seekers API', () => {
             .then(checkOk)
             .then(({ body }) => {
                 assert.equal(body.kids, tyrone.kids);
-                // console.log('*** body', body);
             });
     });
 
@@ -94,7 +94,6 @@ describe.only('Seekers API', () => {
             })
             .then(checkOk)
             .then(({ body }) => {
-                console.log('*** body', body);
                 assert.deepEqual(body, null);
             });
     });
