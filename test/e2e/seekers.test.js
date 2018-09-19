@@ -40,12 +40,12 @@ describe('Seekers API', () => {
 
     beforeEach(() => saveSeeker(tyroneData).then(s => tyrone = s));
 
-    // it('gets a seeker by id', () => {
-    //     return request
-    //         .get(`/api/seekers/${tyrone._id}`)
-    //         .set('Authorization', token)
-    //         .then(({ body }) => assert.deepEqual(body, [tyrone]));
-    // });
+    it('gets a seeker by id', () => {
+        return request
+            .get(`/api/seekers/${tyrone._id}`)
+            .set('Authorization', token)
+            .then(({ body }) => assert.deepEqual(body, [tyrone]));
+    });
 
     it('pushes petIds into interested field', () => {
         const pet = { _id: Types.ObjectId() };
