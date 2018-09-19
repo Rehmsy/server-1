@@ -54,8 +54,19 @@ describe('Seekers API', () => {
             .set('Authorization', token)
             .send(pet)
             .then(({ body }) => {
-                console.log('**** body', body);
                 assert.equal(body.interested.length, 1);
+            });
+    });
+
+    it('pushes petIds into favorites field', () => {
+        const pet = { _id: Types.ObjectId() };
+        return request
+            .put(`/api/seekers/${tyrone._id}/favorites`)
+            .set('Authorization', token)
+            .send(pet)
+            .then(({ body }) => {
+                console.log('**** body', body);
+                assert.equal(body.favorites.length, 1);
             });
     });
 
