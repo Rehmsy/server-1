@@ -5,7 +5,7 @@ const { dropCollection, createToken } = require('./db');
 const { Types } = require('mongoose');
 
 
-describe('Seekers API', () => {
+describe.only('Seekers API', () => {
 
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('seekers'));
@@ -17,7 +17,7 @@ describe('Seekers API', () => {
     beforeEach(() => createToken().then(t => {
         token = t.token;
         tyroneData = { 
-            kids: false,
+            kids: 'No',
             activity: 'Low',
             otherPets: 'No',
             interested: [],
@@ -42,9 +42,9 @@ describe('Seekers API', () => {
 
     it('gets a seeker by id', () => {
         return request
-            .get(`/api/seekers/${tyrone._id}`)
+            .get('/api/seekers')
             .set('Authorization', token)
-            .then(({ body }) => assert.deepEqual(body, [tyrone]));
+            .then(({ body }) => assert.deepEqual(body, tyrone));
     });
 
     it('pushes petIds into interested field', () => {
@@ -70,17 +70,21 @@ describe('Seekers API', () => {
     });
 
     it('updates a seeker document', () => {
-        tyrone.kids = true;
-        return request.put(`/api/seekers/${tyrone._id}`)
+        tyrone.kids = 'Yes';
+        return request
+            .put('/api/seekers')
             .set('Authorization', token)
             .send(tyrone)
             .then(checkOk)
-            .then(({ body }) => assert.equal(body.kids, tyrone.kids));
+            .then(({ body }) => {
+                assert.equal(body.kids, tyrone.kids);
+                // console.log('*** body', body);
+            });
     });
 
     it('deletes seeker document', () => {
         return request
-            .delete(`/api/seekers/${tyrone._id}`)
+            .delete('/api/seekers')
             .set('Authorization', token)
             .then(checkOk)
             .then(() => {
@@ -90,7 +94,8 @@ describe('Seekers API', () => {
             })
             .then(checkOk)
             .then(({ body }) => {
-                assert.deepEqual(body, {});
+                console.log('*** body', body);
+                assert.deepEqual(body, null);
             });
     });
 });
