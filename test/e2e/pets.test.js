@@ -23,7 +23,7 @@ describe('Pets API', () => {
             .set('Authorization', token)
             .send({
                 owner: Types.ObjectId(),
-                zip:  Types.ObjectId(),
+                zip:  97217,
                 name: 'Lolly',
                 species: 'Dog',
                 breedCat: 'Not Applicable',
@@ -53,7 +53,7 @@ describe('Pets API', () => {
             .send(
                 {
                     owner: Types.ObjectId(),
-                    zip:  Types.ObjectId(),
+                    zip:  97217,
                     name: 'Sally',
                     species: 'Dog',
                     breedCat: 'Not Applicable',

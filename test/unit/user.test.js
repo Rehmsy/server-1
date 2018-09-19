@@ -8,7 +8,6 @@ describe('user model', () => {
         name: 'Test',
         email: 'test@test.com',
         password: 'test123',
-        zipCode: 97070
     };
 
     let user = null;
@@ -22,7 +21,6 @@ describe('user model', () => {
     it('validates a good model', () => {
         assert.equal(user.name, credentials.name);
         assert.equal(user.email, credentials.email);
-        assert.equal(user.zipCode, credentials.zipCode);
         assert.isDefined(user.hash, 'hash is defined');
         assert.notEqual(user.hash, credentials.password, 'hash is not the same as password');
         assert.isTrue(user.comparePassword(credentials.password), 'compare good password');
@@ -32,10 +30,9 @@ describe('user model', () => {
 
     it('validates required fields', () => {
         const goal = new User({});
-        const errors = getErrors(goal.validateSync(), 4);
+        const errors = getErrors(goal.validateSync(), 3);
         assert.equal(errors.name.kind, 'required');
         assert.equal(errors.email.kind, 'required');
-        assert.equal(errors.zipCode.kind, 'required');
         assert.equal(errors.hash.kind, 'required');
     });
 });
