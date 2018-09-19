@@ -27,7 +27,7 @@ describe('Seekers API', () => {
         return request.post('/api/seekers')
             .set('Authorization', token)
             .send(data)
-            .then(request.checkOk)
+            .then(checkOk)
             .then(({ body }) => {
                 const { _id, __v } = body;
                 assert.ok(_id);
