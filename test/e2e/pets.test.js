@@ -11,7 +11,11 @@ describe('Pets API', () => {
   
     let sally;
     let lolly;
-    let token = '';
+    let token;
+
+    beforeEach(() => createToken().then(body => {
+        token = body.token;
+    }));
     
     beforeEach(() => {
         return request
@@ -41,9 +45,6 @@ describe('Pets API', () => {
             });
     });
     
-    beforeEach(() => createToken().then(t => {
-        token = t;
-    }));
 
     beforeEach(() => {
         return request
