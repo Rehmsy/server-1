@@ -99,7 +99,7 @@ describe.only('Pets API', () => {
             .set('Authorization', token)
             .send(seeker)
             .then(({ body }) => {
-                console.log(body);
+                assert.equal(body.matches.length, 1);
             });
     });
 
