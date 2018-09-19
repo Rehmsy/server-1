@@ -2,6 +2,8 @@ const { assert } = require('chai');
 const request = require('./request');
 const { checkOk } = request;
 const { dropCollection, createToken } = require('./db');
+const { Types } = require('mongoose');
+
 
 describe('Seekers API', () => {
 
@@ -9,13 +11,13 @@ describe('Seekers API', () => {
     beforeEach(() => dropCollection('seekers'));
     
     let token;
-    let seekerData;
-    let seeker;
+    let tyroneData;
+    let tyrone;
 
     beforeEach(() => createToken().then(t => {
         token = t.token;
-        seekerData = { 
-            kids: 'Yes',
+        tyroneData = { 
+            kids: false,
             activity: 'Low',
             otherPets: 'No',
             interested: [],
@@ -27,7 +29,7 @@ describe('Seekers API', () => {
         return request.post('/api/seekers')
             .set('Authorization', token)
             .send(data)
-            .then(request.checkOk)
+            .then(checkOk)
             .then(({ body }) => {
                 const { _id, __v } = body;
                 assert.ok(_id);
@@ -36,27 +38,49 @@ describe('Seekers API', () => {
             });
     }
 
-    beforeEach(() => saveSeeker(seekerData).then(s => seeker = s));
+    beforeEach(() => saveSeeker(tyroneData).then(s => tyrone = s));
 
     it('gets a seeker by id', () => {
         return request
-            .get(`/api/seekers/${seeker._id}`)
+            .get(`/api/seekers/${tyrone._id}`)
             .set('Authorization', token)
-            .then(({ body }) => assert.deepEqual(body, [seeker]));
+            .then(({ body }) => assert.deepEqual(body, [tyrone]));
+    });
+
+    it('pushes petIds into interested field', () => {
+        const pet = { _id: Types.ObjectId() };
+        return request
+            .put(`/api/seekers/${tyrone._id}/interested`)
+            .set('Authorization', token)
+            .send(pet)
+            .then(({ body }) => {
+                assert.equal(body.interested.length, 1);
+            });
+    });
+
+    it('pushes petIds into favorites field', () => {
+        const pet = { _id: Types.ObjectId() };
+        return request
+            .put(`/api/seekers/${tyrone._id}/favorites`)
+            .set('Authorization', token)
+            .send(pet)
+            .then(({ body }) => {
+                assert.equal(body.favorites.length, 1);
+            });
     });
 
     it('updates a seeker document', () => {
-        seeker.kids = 'Yes';
-        return request.put(`/api/seekers/${seeker._id}`)
+        tyrone.kids = true;
+        return request.put(`/api/seekers/${tyrone._id}`)
             .set('Authorization', token)
-            .send(seeker)
+            .send(tyrone)
             .then(checkOk)
-            .then(({ body }) => assert.equal(body.kids, seeker.kids));
+            .then(({ body }) => assert.equal(body.kids, tyrone.kids));
     });
 
     it('deletes seeker document', () => {
         return request
-            .delete(`/api/seekers/${seeker._id}`)
+            .delete(`/api/seekers/${tyrone._id}`)
             .set('Authorization', token)
             .then(checkOk)
             .then(() => {

@@ -10,69 +10,78 @@ describe('Pets API', () => {
     beforeEach(() => dropCollection('pets'));
   
     let sally;
+    let sallyData;
     let lolly;
+    let lollyData;
     let token;
 
     beforeEach(() => createToken().then(body => {
         token = body.token;
+        lollyData = {
+            zip:  97217,
+            name: 'Lolly',
+            species: 'Dog',
+            breedCat: 'Not Applicable',
+            breedDog: 'Pug',
+            sex: 'Female',
+            size: 'Extra Large',
+            sterilized: 'Yes',
+            age: 'Baby',
+            activity: 'High',
+            kidFriendly: 'Yes',
+            petFriendly: 'Yes',
+            description: 'this pet is nasty',
+            healthBehavior: 'healthy but nasty',
+            images: ['https://cbssacramento.files.wordpress.com/2012/06/81650435_10.jpg?w=1024&h=576&crop=1'],
+            rehome: 'Allergy'
+        };
+
+        sallyData = {
+            zip:  97217,
+            name: 'Sally',
+            species: 'Dog',
+            breedCat: 'Not Applicable',
+            breedDog: 'Shih Tzu',
+            sex: 'Female',
+            size: 'Extra Small',
+            sterilized: 'Yes',
+            age: 'Baby',
+            activity: 'High',
+            kidFriendly: 'Yes',
+            petFriendly: 'Yes',
+            description: 'this pet is nasty',
+            healthBehavior: 'healthy but nasty',
+            images: ['https://cbssacramento.files.wordpress.com/2012/06/81650435_10.jpg?w=1024&h=576&crop=1'],
+            rehome: 'Allergy'
+        };
     }));
     
     beforeEach(() => {
         return request
             .post('/api/pets')
             .set('Authorization', token)
-            .send({
-                owner: Types.ObjectId(),
-                zip:  97217,
-                name: 'Lolly',
-                species: 'Dog',
-                breedCat: 'Not Applicable',
-                breedDog: 'Pug',
-                sex: 'Female',
-                size: 'Extra Large',
-                sterilized: 'Yes',
-                age: 'Baby',
-                activity: 'High',
-                kidFriendly: 'Yes',
-                petFriendly: 'Yes',
-                description: 'this pet is nasty',
-                healthBehavior: 'healthy but nasty',
-                images: ['https://cbssacramento.files.wordpress.com/2012/06/81650435_10.jpg?w=1024&h=576&crop=1'],
-                rehome: 'Allergy'
-            })
+            .send(lollyData)
             .then(({ body }) => {
-                lolly = body;
-            });
+                const { _id, __v } = body;
+                assert.ok(_id);
+                assert.equal(__v, 0);
+                return body;
+            })
+            .then(l => lolly = l);
     });
     
-
     beforeEach(() => {
         return request
             .post('/api/pets')
             .set('Authorization', token)
-            .send(
-                {
-                    owner: Types.ObjectId(),
-                    zip:  97217,
-                    name: 'Sally',
-                    species: 'Dog',
-                    breedCat: 'Not Applicable',
-                    breedDog: 'Shih Tzu',
-                    sex: 'Female',
-                    size: 'Extra Small',
-                    sterilized: 'Yes',
-                    age: 'Baby',
-                    activity: 'High',
-                    kidFriendly: 'Yes',
-                    petFriendly: 'Yes',
-                    description: 'this pet is nasty',
-                    healthBehavior: 'healthy but nasty',
-                    images: ['https://cbssacramento.files.wordpress.com/2012/06/81650435_10.jpg?w=1024&h=576&crop=1'],
-                    rehome: 'Allergy'
-                })
+            .send(sallyData)
             .then(({ body }) => {
-                sally = body;
-            });  
+                const { _id, __v } = body;
+                assert.ok(_id);
+                assert.equal(__v, 0);
+                return body;
+            })
+            .then(s => sally = s);
     });
 
     it('saves a pet', () => {
@@ -81,6 +90,17 @@ describe('Pets API', () => {
     
     it('saves another pet', () => {
         assert.isOk(lolly._id);
+    });
+    
+    it('pushes seekerIds into matches field', () => {
+        const seeker = { _id: Types.ObjectId() };
+        return request
+            .put(`/api/pets/${lolly._id}/matches`)
+            .set('Authorization', token)
+            .send(seeker)
+            .then(({ body }) => {
+                assert.equal(body.matches.length, 1);
+            });
     });
 
     it('updates a pet', () => {
@@ -112,6 +132,7 @@ describe('Pets API', () => {
                 assert.equal(body.length, 2);
             });  
     });
+
 
     it('removes a pet', () => {
         return request
