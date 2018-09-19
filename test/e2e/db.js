@@ -17,7 +17,7 @@ module.exports = {
         name: 'Bubba', 
         email: 'bubba2@email.com', 
         password: 'abc123', 
-        zipCode: 97217
+
     }) {
         return request
             .post('/api/auth/signup')
