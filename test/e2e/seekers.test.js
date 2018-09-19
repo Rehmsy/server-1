@@ -15,9 +15,9 @@ describe('Seekers API', () => {
     beforeEach(() => createToken().then(t => {
         token = t.token;
         seekerData = { 
-            kids: false,
+            kids: 'Yes',
             activity: 'Low',
-            otherPets: false,
+            otherPets: 'No',
             interested: [],
             favorites: []
         };
@@ -46,7 +46,7 @@ describe('Seekers API', () => {
     });
 
     it('updates a seeker document', () => {
-        seeker.kids = true;
+        seeker.kids = 'Yes';
         return request.put(`/api/seekers/${seeker._id}`)
             .set('Authorization', token)
             .send(seeker)
@@ -69,5 +69,4 @@ describe('Seekers API', () => {
                 assert.deepEqual(body, {});
             });
     });
-
 });
