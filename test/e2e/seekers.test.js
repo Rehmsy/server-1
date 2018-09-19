@@ -54,7 +54,7 @@ describe('Seekers API', () => {
             .then(({ body }) => assert.equal(body.kids, seeker.kids));
     });
 
-    it('deletes seeker document', () => {
+    it.skip('deletes seeker document', () => {
         return request
             .delete(`/api/seekers/${seeker._id}`)
             .set('Authorization', token)

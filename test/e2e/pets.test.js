@@ -4,7 +4,7 @@ const { checkOk } = request;
 const { dropCollection, createToken  } = require('./db');
 const { Types } = require('mongoose');
 
-describe.only('Pets API', () => {
+describe('Pets API', () => {
   
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('pets'));
@@ -15,6 +15,7 @@ describe.only('Pets API', () => {
 
     beforeEach(() => createToken().then(body => {
         token = body.token;
+        console.log('creaaaaaaaaaaate a tokennn', body);
     }));
     
     beforeEach(() => {
@@ -91,7 +92,20 @@ describe.only('Pets API', () => {
             .send(sally)
             .then(checkOk)
             .then(({ body }) => {
+                console.log('boooooooody nnaaaaaaaame', body.name);
                 assert.equal(body.name, sally.name);      
+            });
+    });
+
+    it('pushes seekerIds into matches field', () => {
+        //ObjectId()????
+        const seeker = { _id: Types.ObjectId() };
+        return request
+            .put(`/api/pets/${lolly._id}/matches`)
+            .set('Authorization', token)
+            .send(seeker)
+            .then(({ body }) => {
+                console.log('is thiiiiiiiiis ussss?', body);
             });
     });
 
@@ -100,33 +114,32 @@ describe.only('Pets API', () => {
             .get(`/api/pets/${sally._id}`)
             .set('Authorization', token)
             .then(({ body }) => {
-                console.log('*** body', body);
                 assert.deepEqual(body, sally);
             });
     });
 
+    // it('gets all pets', () => {
+    //     return request.get('/api/pets')
+    //         .set('Authorization', token)
+    //         .then(({ body }) => {
+    //             console.log('aaaaaaaaaaaalllll the boooodies', body);
+    //             assert.equal(body.length, 2);
+    //         });  
+    // });
 
-    it('gets all pets', () => {
-        return request.get('/api/pets')
-            .set('Authorization', token)
-            .then(({ body }) => {
-                assert.equal(body.length, 2);
-            });  
-    });
-
-    it('removes a pet', () => {
-        return request
-            .delete(`/api/pets/${lolly._id}`)
-            .set('Authorization', token)
-            .then(checkOk)
-            .then(() => {
-                return request
-                    .get('/api/pets')
-                    .set('Authorization', token);
-            })
-            .then(checkOk)
-            .then(({ body }) => {
-                assert.deepEqual(body, [sally]);
-            });
-    });
+    // it('removes a pet', () => {
+    //     return request
+    //         .delete(`/api/pets/${lolly._id}`)
+    //         .set('Authorization', token)
+    //         .then(checkOk)
+    //         .then(() => {
+    //             return request
+    //                 .get('/api/pets')
+    //                 .set('Authorization', token);
+    //         })
+    //         .then(checkOk)
+    //         .then(({ body }) => {
+    //             assert.deepEqual(body, [sally]);
+    //         });
+    // });
 });
