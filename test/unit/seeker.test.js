@@ -14,9 +14,9 @@ describe('Seeker model', () => {
     it('validates a good model', () => {
         const data = {
             user: Types.ObjectId(),
-            kids: 'Yes',
-            activity: 'Low',
-            otherPets: 'No',
+            kids: 'yes',
+            activityLevel: 'low',
+            otherPets: 'no',
             interested: [],
             favorites: []
         };
@@ -31,7 +31,7 @@ describe('Seeker model', () => {
         const seeker = new Seeker({});
         const errors = getErrors(seeker.validateSync(), 4);
         assert.equal(errors.user.kind, 'required');
-        assert.equal(errors.activity.kind, 'required');
+        assert.equal(errors.activityLevel.kind, 'required');
         assert.equal(errors.kids.kind, 'required');
         assert.equal(errors.otherPets.kind, 'required');
     });
