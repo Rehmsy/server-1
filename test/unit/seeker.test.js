@@ -14,9 +14,9 @@ describe('Seeker model', () => {
     it('validates a good model', () => {
         const data = {
             user: Types.ObjectId(),
-            kids: 'Yes',
-            activity: 'Low',
-            otherPets: 'No',
+            kids: 'yes',
+            activity: 'low',
+            otherPets: 'no',
             interested: [],
             favorites: []
         };

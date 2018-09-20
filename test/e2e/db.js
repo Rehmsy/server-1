@@ -10,11 +10,11 @@ module.exports = {
     dropCollection(name) {
         return mongoose.connection.dropCollection(name)
             .catch(err => {
-                if(err.codeName !== 'NamespaceNotFound') throw err;
+                if(err.codeName !== 'namespaceNotFound') throw err;
             });
     },
     createToken(data = { 
-        name: 'Bubba', 
+        name: 'bubba', 
         email: 'bubba2@email.com', 
         password: 'abc123', 
 

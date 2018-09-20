@@ -3,7 +3,7 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 
 const myUser = {
-    name: 'Bobo',
+    name: 'bobo',
     email: 'bobo2@email.com',
     password: '123abc',
 };

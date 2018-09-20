@@ -5,7 +5,7 @@ const { dropCollection, createToken } = require('./db');
 const { Types } = require('mongoose');
 
 
-describe.only('Seekers API', () => {
+describe('Seekers API', () => {
 
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('seekers'));
@@ -17,9 +17,9 @@ describe.only('Seekers API', () => {
     beforeEach(() => createToken().then(t => {
         token = t.token;
         tyroneData = { 
-            kids: 'No',
-            activity: 'Low',
-            otherPets: 'No',
+            kids: 'no',
+            activity: 'low',
+            otherPets: 'no',
             interested: [],
             favorites: []
         };
@@ -71,7 +71,7 @@ describe.only('Seekers API', () => {
     });
 
     it('updates a seeker document', () => {
-        tyrone.kids = 'Yes';
+        tyrone.kids = 'yes';
         return request
             .put('/api/seekers')
             .set('Authorization', token)

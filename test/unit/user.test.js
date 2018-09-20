@@ -5,7 +5,7 @@ const User = require('../../lib/models/User.js');
 
 describe('user model', () => {
     const credentials = {
-        name: 'Test',
+        name: 'test',
         email: 'test@test.com',
         password: 'test123',
     };
