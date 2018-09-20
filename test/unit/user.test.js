@@ -2,7 +2,6 @@ const { assert } = require('chai');
 const { getErrors } = require('../helpers.js');
 const User = require('../../lib/models/User.js');
 
-
 describe('user model', () => {
     const credentials = {
         name: 'Test',
