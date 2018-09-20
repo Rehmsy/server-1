@@ -17,9 +17,9 @@ describe('Seekers API', () => {
     beforeEach(() => createToken().then(t => {
         token = t.token;
         tyroneData = { 
-            kids: 'No',
-            activity: 'Low',
-            otherPets: 'No',
+            kids: 'no',
+            activity: 'low',
+            otherPets: 'no',
             interested: [],
             favorites: []
         };
@@ -70,7 +70,7 @@ describe('Seekers API', () => {
     });
 
     it('updates a seeker document', () => {
-        tyrone.kids = 'Yes';
+        tyrone.kids = 'yes';
         return request
             .put('/api/seekers')
             .set('Authorization', token)

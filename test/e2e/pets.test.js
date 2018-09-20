@@ -20,39 +20,39 @@ describe('Pets API', () => {
         lollyData = {
             zip:  97217,
             name: 'Lolly',
-            species: 'Dog',
-            breedCat: 'Not Applicable',
-            breedDog: 'Pug',
-            sex: 'Female',
-            size: 'Extra Large',
-            sterilized: 'Yes',
-            age: 'Baby',
-            activity: 'High',
-            kidFriendly: 'Yes',
-            petFriendly: 'Yes',
+            species: 'dog',
+            catBreed: 'not-applicable',
+            dogBreed: 'pug',
+            sex: 'female',
+            size: 'extra-large',
+            sterilized: 'yes',
+            age: 'baby',
+            activity: 'high',
+            kidFriendly: 'yes',
+            petFriendly: 'yes',
             description: 'this pet is nasty',
             healthBehavior: 'healthy but nasty',
             images: ['https://cbssacramento.files.wordpress.com/2012/06/81650435_10.jpg?w=1024&h=576&crop=1'],
-            rehome: 'Allergy'
+            reason: 'allergy'
         };
 
         sallyData = {
             zip:  97217,
             name: 'Sally',
-            species: 'Dog',
-            breedCat: 'Not Applicable',
-            breedDog: 'Shih Tzu',
-            sex: 'Female',
-            size: 'Extra Small',
-            sterilized: 'Yes',
-            age: 'Baby',
-            activity: 'High',
-            kidFriendly: 'Yes',
-            petFriendly: 'Yes',
+            species: 'dog',
+            catBreed: 'not-applicable',
+            dogBreed: 'shih-tzu',
+            sex: 'female',
+            size: 'extra-small',
+            sterilized: 'yes',
+            age: 'baby',
+            activity: 'high',
+            kidFriendly: 'yes',
+            petFriendly: 'yes',
             description: 'this pet is nasty',
             healthBehavior: 'healthy but nasty',
             images: ['https://cbssacramento.files.wordpress.com/2012/06/81650435_10.jpg?w=1024&h=576&crop=1'],
-            rehome: 'Allergy'
+            reason: 'allergy'
         };
     }));
     
