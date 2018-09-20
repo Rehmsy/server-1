@@ -16,7 +16,7 @@ describe('Pet model', () => {
             size: 'extra-small',
             sterilized: 'yes',
             age: 'baby',
-            activity: 'high',
+            activityLevel: 'high',
             kidFriendly: 'yes',
             petFriendly: 'yes',
             description: 'this pet is nasty',
