@@ -7,7 +7,7 @@ describe('Pet model', () => {
     it('validates a dope pet model', () => {
         const data = {
             owner: Types.ObjectId(),
-            zip:  97217,
+            zip:  '97217',
             name: 'Tina',
             species: 'Dog',
             breedCat: 'Not Applicable',
