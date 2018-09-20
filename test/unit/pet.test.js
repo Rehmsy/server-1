@@ -21,6 +21,7 @@ describe('Pet model', () => {
             petFriendly: 'Yes',
             description: 'this pet is nasty',
             healthBehavior: 'healthy but nasty',
+            matches: [Types.ObjectId()],
             images: ['https://cbssacramento.files.wordpress.com/2012/06/81650435_10.jpg?w=1024&h=576&crop=1'],
             rehome: 'Allergy'
         };

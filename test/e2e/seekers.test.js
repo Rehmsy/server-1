@@ -5,7 +5,7 @@ const { dropCollection, createToken } = require('./db');
 const { Types } = require('mongoose');
 
 
-describe.only('Seekers API', () => {
+describe('Seekers API', () => {
 
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('seekers'));
