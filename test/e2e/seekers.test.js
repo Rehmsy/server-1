@@ -45,6 +45,7 @@ describe('Seekers API', () => {
             .get('/api/seekers')
             .set('Authorization', token)
             .then(({ body }) => assert.deepEqual(body, tyrone));
+         
     });
 
     it('pushes petIds into interested field', () => {
