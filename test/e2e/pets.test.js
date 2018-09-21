@@ -115,15 +115,14 @@ describe('Pets API', () => {
             });
     });
 
-    it('get a pet by id', () => {
+    it('get a pets by owner id', () => {
         return request
-            .get(`/api/pets/${sally._id}`)
+            .get('/api/pets/owner')
             .set('Authorization', token)
             .then(({ body }) => {
-                assert.deepEqual(body, sally);
+                assert.deepEqual(body, [lolly, sally]);
             });
     });
-
 
     it('gets all pets', () => {
         return request.get('/api/pets')
@@ -132,7 +131,6 @@ describe('Pets API', () => {
                 assert.equal(body.length, 2);
             });  
     });
-
 
     it('removes a pet', () => {
         return request

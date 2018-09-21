@@ -50,7 +50,7 @@ describe('Seekers API', () => {
     it('pushes petIds into interested field', () => {
         const pet = { _id: Types.ObjectId() };
         return request
-            .put('/api/seekers/interested')
+            .put('/api/seekers/wants')
             .set('Authorization', token)
             .send(pet)
             .then(({ body }) => {
