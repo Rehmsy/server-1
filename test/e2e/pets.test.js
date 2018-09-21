@@ -4,7 +4,7 @@ const { checkOk } = request;
 const { dropCollection, createToken  } = require('./db');
 const { Types } = require('mongoose');
 
-describe.only('Pets API', () => {
+describe('Pets API', () => {
   
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('pets'));
@@ -117,7 +117,7 @@ describe.only('Pets API', () => {
 
     it('get a pets by owner id', () => {
         return request
-            .get('/api/pets/single')
+            .get('/api/pets/owner')
             .set('Authorization', token)
             .then(({ body }) => {
                 console.log(body);
