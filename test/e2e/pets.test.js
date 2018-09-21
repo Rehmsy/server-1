@@ -19,6 +19,7 @@ describe('Pets API', () => {
         token = body.token;
         lollyData = {
             zip:  97217,
+<<<<<<< HEAD
             name: 'lolly',
             species: 'dog',
             catBreed: 'not applicable',
@@ -28,16 +29,32 @@ describe('Pets API', () => {
             sterilized: 'yes',
             age: 'baby',
             activity: 'high',
+=======
+            name: 'Lolly',
+            species: 'dog',
+            catBreed: 'not-applicable',
+            dogBreed: 'pug',
+            sex: 'female',
+            size: 'extra-large',
+            sterilized: 'yes',
+            age: 'baby',
+            activityLevel: 'high',
+>>>>>>> master
             kidFriendly: 'yes',
             petFriendly: 'yes',
             description: 'this pet is nasty',
             healthBehavior: 'healthy but nasty',
             images: ['https://cbssacramento.files.wordpress.com/2012/06/81650435_10.jpg?w=1024&h=576&crop=1'],
+<<<<<<< HEAD
             rehomeReason: 'allergy'
+=======
+            reason: 'allergy'
+>>>>>>> master
         };
 
         sallyData = {
             zip:  97217,
+<<<<<<< HEAD
             name: 'sally',
             species: 'dog',
             catBreed: 'not applicable',
@@ -47,12 +64,27 @@ describe('Pets API', () => {
             sterilized: 'yes',
             age: 'baby',
             activity: 'high',
+=======
+            name: 'Sally',
+            species: 'dog',
+            catBreed: 'not-applicable',
+            dogBreed: 'shih-tzu',
+            sex: 'female',
+            size: 'extra-small',
+            sterilized: 'yes',
+            age: 'baby',
+            activityLevel: 'high',
+>>>>>>> master
             kidFriendly: 'yes',
             petFriendly: 'yes',
             description: 'this pet is nasty',
             healthBehavior: 'healthy but nasty',
             images: ['https://cbssacramento.files.wordpress.com/2012/06/81650435_10.jpg?w=1024&h=576&crop=1'],
+<<<<<<< HEAD
             rehomeReason: 'allergy'
+=======
+            reason: 'allergy'
+>>>>>>> master
         };
     }));
     
