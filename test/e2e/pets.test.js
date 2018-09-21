@@ -115,12 +115,14 @@ describe.only('Pets API', () => {
             });
     });
 
-    it('get a pet by id', () => {
+    it('get a pets by owner id', () => {
         return request
             .get('/api/pets/single')
             .set('Authorization', token)
             .then(({ body }) => {
-                assert.deepEqual(body, lolly);
+                console.log(body);
+                
+                assert.deepEqual(body, [lolly, sally]);
             });
     });
 
