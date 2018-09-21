@@ -120,12 +120,9 @@ describe('Pets API', () => {
             .get('/api/pets/owner')
             .set('Authorization', token)
             .then(({ body }) => {
-                console.log(body);
-                
                 assert.deepEqual(body, [lolly, sally]);
             });
     });
-
 
     it('gets all pets', () => {
         return request.get('/api/pets')
@@ -134,7 +131,6 @@ describe('Pets API', () => {
                 assert.equal(body.length, 2);
             });  
     });
-
 
     it('removes a pet', () => {
         return request

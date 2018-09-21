@@ -54,7 +54,6 @@ describe('Seekers API', () => {
             .set('Authorization', token)
             .send(pet)
             .then(({ body }) => {
-                console.log('BODDdddy', body);
                 assert.equal(body.interested.length, 1);
             });
     });
