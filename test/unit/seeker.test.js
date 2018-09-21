@@ -15,7 +15,7 @@ describe('Seeker model', () => {
         const data = {
             user: Types.ObjectId(),
             kids: 'yes',
-            activity: 'low',
+            activityLevel: 'low',
             otherPets: 'no',
             interested: [],
             favorites: []
@@ -31,7 +31,7 @@ describe('Seeker model', () => {
         const seeker = new Seeker({});
         const errors = getErrors(seeker.validateSync(), 4);
         assert.equal(errors.user.kind, 'required');
-        assert.equal(errors.activity.kind, 'required');
+        assert.equal(errors.activityLevel.kind, 'required');
         assert.equal(errors.kids.kind, 'required');
         assert.equal(errors.otherPets.kind, 'required');
     });

@@ -18,7 +18,7 @@ describe('Seekers API', () => {
         token = t.token;
         tyroneData = { 
             kids: 'no',
-            activity: 'low',
+            activityLevel: 'low',
             otherPets: 'no',
             interested: [],
             favorites: []
