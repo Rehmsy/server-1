@@ -4,7 +4,7 @@ const { checkOk } = request;
 const { dropCollection, createToken  } = require('./db');
 const { Types } = require('mongoose');
 
-describe('Pets API', () => {
+describe.only('Pets API', () => {
   
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('pets'));
@@ -117,10 +117,10 @@ describe('Pets API', () => {
 
     it('get a pet by id', () => {
         return request
-            .get(`/api/pets/${sally._id}`)
+            .get('/api/pets/single')
             .set('Authorization', token)
             .then(({ body }) => {
-                assert.deepEqual(body, sally);
+                assert.deepEqual(body, lolly);
             });
     });
 
